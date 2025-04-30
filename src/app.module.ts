@@ -6,6 +6,10 @@ import { User } from './modules/users/entities/user.entity';
 import { Category } from './modules/categories/entities/category.entity';
 import { Priority } from './modules/priorities/entities/priority.entity';
 import { Todo } from './modules/todos/entities/todo.entity';
+import { AuthModule } from './modules/auth/auth.module';
+import { PrioritiesModule } from './modules/priorities/priorities.module';
+import { CategoriesModule } from './modules/categories/categories.module';
+import { TodosModule } from './modules/todos/todos.module';
 
 @Module({
   imports: [
@@ -27,6 +31,10 @@ import { Todo } from './modules/todos/entities/todo.entity';
       }),
       inject: [ConfigService],
     }),
+    AuthModule,
+    PrioritiesModule,
+    CategoriesModule,
+    TodosModule,
   ],
 })
 export class AppModule {}
