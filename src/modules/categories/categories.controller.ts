@@ -29,8 +29,8 @@ export class CategoriesController {
   }
 
   @Get()
-  findAll(@Request() req): Promise<ApiResponse> {
-    return this.categoriesService.findAll(req.user.id);
+  findAll(): Promise<ApiResponse> {
+    return this.categoriesService.findAll();
   }
 
   @Get(':id')

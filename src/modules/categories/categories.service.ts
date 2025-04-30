@@ -31,10 +31,10 @@ export class CategoriesService {
     };
   }
 
-  async findAll(userId: string): Promise<ApiResponse> {
+  async findAll(): Promise<ApiResponse> {
     const categories = await this.categoryRepository.find({
       where: {
-        userId,
+        // userId,
         active_status: true,
         del_status: false,
       },
