@@ -10,6 +10,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { PrioritiesModule } from './modules/priorities/priorities.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { TodosModule } from './modules/todos/todos.module';
+import { CliModule } from './shared/commands/command.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { TodosModule } from './modules/todos/todos.module';
     PrioritiesModule,
     CategoriesModule,
     TodosModule,
+    CliModule,
   ],
 })
 export class AppModule {}
