@@ -5,4 +5,4 @@ export class UpdateCategoryDto {
   @IsOptional()
   @IsNotEmpty()
   name?: string;
-} 
+}

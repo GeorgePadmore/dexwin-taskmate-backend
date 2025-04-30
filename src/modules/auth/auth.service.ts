@@ -55,12 +55,11 @@ export class AuthService {
     await this.userRepository.save(user);
 
     // TODO: Send verification email with token
-    
     return {
       response_code: 'AUTH001',
       response_desc: 'User registered successfully. Please verify your email.',
       success: true,
-      data: { 
+      data: {
         email: user.email,
         fullName: user.fullName,
         verificationToken: emailVerificationToken, // Remove in production
@@ -103,6 +102,7 @@ export class AuthService {
         success: true,
         data: null,
       };
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       throw new BadRequestException('Invalid or expired verification token');
     }
@@ -129,7 +129,9 @@ export class AuthService {
     );
 
     user.emailVerificationToken = emailVerificationToken;
-    user.emailVerificationTokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000);
+    user.emailVerificationTokenExpiry = new Date(
+      Date.now() + 24 * 60 * 60 * 1000,
+    );
 
     await this.userRepository.save(user);
 
@@ -139,7 +141,7 @@ export class AuthService {
       response_code: 'AUTH007',
       response_desc: 'Verification email resent successfully',
       success: true,
-      data: { 
+      data: {
         verificationToken: emailVerificationToken, // Remove in production
       },
     };
@@ -257,7 +259,7 @@ export class AuthService {
         success: true,
         data: null,
       };
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       throw new BadRequestException('Invalid or expired reset token');
     }

@@ -36,4 +36,4 @@ export class PrioritiesSeeder implements OnApplicationBootstrap {
       }
     }
   }
-} 
+}

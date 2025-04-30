@@ -1,4 +1,10 @@
-import { IsDateString, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
+import {
+  IsDateString,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 
 export class CreateTodoDto {
   @IsString()
@@ -20,4 +26,4 @@ export class CreateTodoDto {
   @IsUUID()
   @IsOptional()
   categoryId?: string;
-} 
+}

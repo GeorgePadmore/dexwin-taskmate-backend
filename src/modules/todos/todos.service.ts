@@ -14,7 +14,10 @@ export class TodosService {
     private todoRepository: Repository<Todo>,
   ) {}
 
-  async create(userId: string, createTodoDto: CreateTodoDto): Promise<ApiResponse> {
+  async create(
+    userId: string,
+    createTodoDto: CreateTodoDto,
+  ): Promise<ApiResponse> {
     const todo = this.todoRepository.create({
       ...createTodoDto,
       userId,
@@ -31,10 +34,15 @@ export class TodosService {
     };
   }
 
-  async findAll(userId: string, filterDto: FilterTodoDto): Promise<ApiResponse> {
-    const { status, categoryId, priorityId, search, sortBy, sortDirection } = filterDto;
+  async findAll(
+    userId: string,
+    filterDto: FilterTodoDto,
+  ): Promise<ApiResponse> {
+    const { status, categoryId, priorityId, search, sortBy, sortDirection } =
+      filterDto;
 
-    const query = this.todoRepository.createQueryBuilder('todo')
+    const query = this.todoRepository
+      .createQueryBuilder('todo')
       .leftJoinAndSelect('todo.category', 'category')
       .leftJoinAndSelect('todo.priority', 'priority')
       .where('todo.userId = :userId', { userId })
@@ -54,9 +62,12 @@ export class TodosService {
     }
 
     if (search) {
-      query.andWhere('(todo.title ILIKE :search OR todo.description ILIKE :search)', {
-        search: `%${search}%`,
-      });
+      query.andWhere(
+        '(todo.title ILIKE :search OR todo.description ILIKE :search)',
+        {
+          search: `%${search}%`,
+        },
+      );
     }
 
     // Handle sorting
@@ -179,7 +190,10 @@ export class TodosService {
       throw new NotFoundException('Todo not found');
     }
 
-    todo.status = todo.status === TodoStatus.ACTIVE ? TodoStatus.COMPLETED : TodoStatus.ACTIVE;
+    todo.status =
+      todo.status === TodoStatus.ACTIVE
+        ? TodoStatus.COMPLETED
+        : TodoStatus.ACTIVE;
     await this.todoRepository.save(todo);
 
     return {
@@ -189,4 +203,4 @@ export class TodosService {
       data: todo,
     };
   }
-} 
+}

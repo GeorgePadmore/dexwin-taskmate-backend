@@ -13,7 +13,10 @@ export class CategoriesService {
     private categoryRepository: Repository<Category>,
   ) {}
 
-  async create(userId: string, createCategoryDto: CreateCategoryDto): Promise<ApiResponse> {
+  async create(
+    userId: string,
+    createCategoryDto: CreateCategoryDto,
+  ): Promise<ApiResponse> {
     const category = this.categoryRepository.create({
       ...createCategoryDto,
       userId,
@@ -30,7 +33,7 @@ export class CategoriesService {
 
   async findAll(userId: string): Promise<ApiResponse> {
     const categories = await this.categoryRepository.find({
-      where: { 
+      where: {
         userId,
         active_status: true,
         del_status: false,
@@ -47,7 +50,7 @@ export class CategoriesService {
 
   async findOne(userId: string, id: string): Promise<ApiResponse> {
     const category = await this.categoryRepository.findOne({
-      where: { 
+      where: {
         id,
         userId,
         active_status: true,
@@ -73,7 +76,7 @@ export class CategoriesService {
     updateCategoryDto: UpdateCategoryDto,
   ): Promise<ApiResponse> {
     const category = await this.categoryRepository.findOne({
-      where: { 
+      where: {
         id,
         userId,
         active_status: true,
@@ -101,7 +104,7 @@ export class CategoriesService {
 
   async remove(userId: string, id: string): Promise<ApiResponse> {
     const category = await this.categoryRepository.findOne({
-      where: { 
+      where: {
         id,
         userId,
         active_status: true,
@@ -123,4 +126,4 @@ export class CategoriesService {
       data: null,
     };
   }
-} 
+}

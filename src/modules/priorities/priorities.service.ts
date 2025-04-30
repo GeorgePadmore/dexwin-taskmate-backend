@@ -55,7 +55,10 @@ export class PrioritiesService {
     };
   }
 
-  async update(id: string, updatePriorityDto: UpdatePriorityDto): Promise<ApiResponse> {
+  async update(
+    id: string,
+    updatePriorityDto: UpdatePriorityDto,
+  ): Promise<ApiResponse> {
     const priority = await this.priorityRepository.findOne({
       where: { id, active_status: true, del_status: false },
     });
@@ -97,4 +100,4 @@ export class PrioritiesService {
       data: null,
     };
   }
-} 
+}

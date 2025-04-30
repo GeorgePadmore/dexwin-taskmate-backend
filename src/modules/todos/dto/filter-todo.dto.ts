@@ -45,4 +45,4 @@ export class FilterTodoDto {
   @IsEnum(SortDirection)
   @Transform(({ value }) => value?.toUpperCase())
   sortDirection?: SortDirection = SortDirection.ASC;
-} 
+}

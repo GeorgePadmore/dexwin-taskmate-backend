@@ -39,10 +39,7 @@ export class TodosController {
   }
 
   @Get(':id')
-  findOne(
-    @Request() req,
-    @Param('id') id: string,
-  ): Promise<ApiResponse> {
+  findOne(@Request() req, @Param('id') id: string): Promise<ApiResponse> {
     return this.todosService.findOne(req.user.id, id);
   }
 
@@ -56,18 +53,12 @@ export class TodosController {
   }
 
   @Delete(':id')
-  remove(
-    @Request() req,
-    @Param('id') id: string,
-  ): Promise<ApiResponse> {
+  remove(@Request() req, @Param('id') id: string): Promise<ApiResponse> {
     return this.todosService.remove(req.user.id, id);
   }
 
   @Patch(':id/toggle')
-  toggleStatus(
-    @Request() req,
-    @Param('id') id: string,
-  ): Promise<ApiResponse> {
+  toggleStatus(@Request() req, @Param('id') id: string): Promise<ApiResponse> {
     return this.todosService.toggleStatus(req.user.id, id);
   }
-} 
+}
