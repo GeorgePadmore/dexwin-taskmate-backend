@@ -11,4 +11,7 @@ export default () => ({
     secret: process.env.JWT_SECRET,
     expiresIn: process.env.JWT_EXPIRATION || '1d',
   },
+  app: {
+    webBaseUrl: process.env.WEB_BASE_URL || 'http://localhost:5173',
+  },
 });

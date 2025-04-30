@@ -14,6 +14,7 @@ import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
 import { ApiResponse } from '../../shared/interfaces/api-response.interface';
+import { EmailService } from '../../shared/services/email.service';
 
 @Injectable()
 export class AuthService {
@@ -21,6 +22,7 @@ export class AuthService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private jwtService: JwtService,
+    private emailService: EmailService,
   ) {}
 
   async signup(signupDto: SignupDto): Promise<ApiResponse> {
@@ -54,7 +56,12 @@ export class AuthService {
 
     await this.userRepository.save(user);
 
-    // TODO: Send verification email with token
+    // Send verification email
+    await this.emailService.sendVerificationEmail(
+      email,
+      emailVerificationToken,
+    );
+
     return {
       response_code: 'AUTH001',
       response_desc: 'User registered successfully. Please verify your email.',
@@ -62,7 +69,6 @@ export class AuthService {
       data: {
         email: user.email,
         fullName: user.fullName,
-        verificationToken: emailVerificationToken, // Remove in production
       },
     };
   }
