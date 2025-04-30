@@ -97,3 +97,37 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+## API Documentation
+
+The API documentation is available through Swagger UI at `/api/docs` when the application is running. The documentation includes detailed information about all available endpoints, request/response schemas, and authentication requirements.
+
+### Authentication
+
+The API uses Bearer token authentication. Include the token in the Authorization header:
+```
+Authorization: Bearer <your-token>
+```
+
+### Available Modules
+
+The API is organized into the following modules:
+
+- **Auth**: User authentication and authorization
+- **Categories**: Manage task categories
+- **Priorities**: Manage task priorities
+- **Todos**: Manage tasks and to-do items
+
+### Response Format
+
+All API responses follow a standard format:
+```json
+{
+  "response_code": "string",
+  "response_desc": "string",
+  "success": boolean,
+  "data": object
+}
+```
+
+For detailed API documentation, including all available endpoints, request/response schemas, and examples, please visit the Swagger UI at `/api/docs` when the application is running.
